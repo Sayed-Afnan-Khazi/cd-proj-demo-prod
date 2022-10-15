@@ -11,7 +11,73 @@
       <change beforePath="$PROJECT_DIR$/../IndianFoodDataset/IndianFoodDatasetCSV.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../IndianFoodDataset/IndianFoodDatasetXLS.xlsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../IndianFoodDataset/filtering.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/dev.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dev.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Filtered-Non_Gluten-IndianFoodRecipes.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GlutenIndianFoodRecipes.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/IndianFoodDataset/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/IndianFoodDataset/.idea/IndianFoodDataset.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/IndianFoodDataset/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/IndianFoodDataset/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/IndianFoodDataset/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/IndianFoodDataset/FilteredIndianFoodRecipes.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/IndianFoodDataset/IndianFoodDatasetCSV.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/IndianFoodDataset/IndianFoodDatasetXLS.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/IndianFoodDataset/filtering.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets-renamed/File 1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets-renamed/File 10.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets-renamed/File 11.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets-renamed/File 12.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets-renamed/File 13.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets-renamed/File 14.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets-renamed/File 15.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets-renamed/File 16.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets-renamed/File 17.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets-renamed/File 18.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets-renamed/File 19.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets-renamed/File 2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets-renamed/File 20.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets-renamed/File 21.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets-renamed/File 22.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets-renamed/File 23.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets-renamed/File 24.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets-renamed/File 25.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets-renamed/File 3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets-renamed/File 4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets-renamed/File 5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets-renamed/File 6.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets-renamed/File 7.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets-renamed/File 8.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets-renamed/File 9.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets/01.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets/02.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets/03.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets/04.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets/05-1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets/05-2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets/06.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets/07-1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets/07-2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets/07-3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets/07-4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets/07-5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets/07-6.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets/07-7.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets/07-8.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets/08-1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets/08-2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets/09.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets/10-1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets/10-2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets/10-3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets/10-4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets/11.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets/12-1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ifct-composition-assets/12-2.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../ifct-composition-assets-renamed/File 1.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../ifct-composition-assets-renamed/File 10.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../ifct-composition-assets-renamed/File 11.csv" beforeDir="false" />
