@@ -141,6 +141,15 @@ try:
             key_set += 1
             EDAMAM_APP_ID = os.environ.get(f'EDAMAM_APP_ID_{key_set}')
             EDAMAM_APP_KEY = os.environ.get(f'EDAMAM_APP_KEY_{key_set}')
+            if not EDAMAM_APP_ID or not EDAMAM_APP_KEY:
+                print("No more keys available. Stopping the script.")
+                log_message += f'''{datetime.now()} No more keys available. Stopping the script.
+'''
+                print("Saving current results to CSV files")
+                recipeOverview.to_csv('output-datasets/RecipeOverview.csv', index=False)
+                recipeDetailed.to_csv('output-datasets/RecipeDetailed.csv', index=False)
+                send_email(log_message,subject="SCRIPT STOPPED DUE TO EXHAUSTION OF KEYS!")
+                break
             print("*"*50,"Switching to key set",key_set,"*"*50)
             log_message += f'''{datetime.now()} {'*'*50} Switching to key set {key_set} {'*'*50}
 '''
