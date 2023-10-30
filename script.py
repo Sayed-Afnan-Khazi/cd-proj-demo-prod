@@ -1,5 +1,12 @@
 # Script to fetch details of recipes through the Edamam API. Made by Sayed-Afnan-Khazi.
 
+# TO RUN THIS SCRIPT:
+# 1. pip install -r requirements.txt
+# 2. Create a .env file in the same directory 
+# 3. Create an output-datasets folder in the same directory
+# 4. Store Filtered-Non_Gluten-IndianFoodRecipes.csv in the output-datasets folder
+# 5. Run this script
+
 import pandas as pd
 import os
 import time
