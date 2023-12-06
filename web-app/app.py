@@ -54,6 +54,7 @@ def browse():
     sr_data = pd.read_csv('../output-datasets/RecipeOverviewV1.csv')
     srno_list = sr_data['Srno'].tolist()
 
+    # Only displaying the data which is present in the RecipeOverviewV1.csv file
     recipes = []
     for index, row in data.iterrows():
         if row['Srno'] in srno_list:
