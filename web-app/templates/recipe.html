@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse - Celiac Disease Meal Planner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #376a45;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h1 {
+            margin: 0;
+            font-size: 36px;
+            color: white;
+        }
+        nav a {
+            text-decoration: none;
+            color: #142B13;
+            font-size: 18px;
+            border: none; 
+            padding: 10px; 
+        } 
+        nav a:hover {
+            color: white;
+        }
+        main {
+            padding: 20px;
+            margin-bottom: 30vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        section {
+            margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+        }
+        section > p {
+            max-width: 80vh;
+        }
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        img {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        h3 {
+            margin: 0;
+            font-size: 20px;
+            color: #376a45;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        a {
+            background-color: #376a45;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 30vw;
+            margin: auto;
+            text-align: center;
+        }
+        a:hover {
+            background-color: #142B13;
+        }
+        footer {
+            background-color: #376a45;
+            padding: 20px;
+            text-align: center;
+        }
+        footer > p {
+            color: white;
+        }
+        .back-button {
+            background-color: #376a45; 
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            float: left;
+        }
+
+        .back-button:hover {
+            background-color: #142B13;
+        }
+
+        .top-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        .recipe-name {
+            text-align: center;
+        }
+        .overview, .ingredients {
+            padding: 5px;
+            padding-bottom: 15px;
+            border: solid 5px #142B13;
+            margin: 5px;
+        }
+        .ingredients {
+            padding: 15px;
+        }
+        .nutritional-analysis-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+        .nutritional-analysis-container > table {
+            padding: 5px;
+            padding-bottom: 15px;
+            border: solid 5px #142B13;
+            margin: 5px;
+        }
+            
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Celiac Disease Meal Planner</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Recipes</a></li>
+                <li><a href="#">Your Meal Plans</a></li>
+                <li><a href="#">Shopping List</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <button class="back-button" onclick="goBack()">Go Back</button> 
+        <div class="top-container">
+            <section class="overview">
+                <h2>Recipe Overview</h2>
+                <h3 class="recipe-name">{{ meta_data.RecipeName }}</h3>
+                <table>
+                    <tr>
+                        <th>Srno</th>
+                        <td>{{ recipe.Srno }}</td>
+                    </tr>
+                    <tr>
+                        <th>Calories</th>
+                        <td>{{ recipe.calories }}</td>
+                    </tr>
+                    <tr>
+                        <th>Total CO2 Emissions</th>
+                        <td>{{ recipe.totalCO2Emissions }}</td>
+                    </tr>
+                    <tr>
+                        <th>CO2 Emissions Class</th>
+                        <td>{{ recipe.co2EmissionsClass }}</td>
+                    </tr>
+                    <tr>
+                        <th>Total Weight</th>
+                        <td>{{ recipe.totalWeight }}</td>
+                    </tr>
+                    <!-- <tr>
+                        <th>Diet Labels</th>
+                        <td>{{ recipe.dietLabels }}</td>
+                    </tr>
+                    <tr>
+                        <th>Health Labels</th>
+                        <td>{{ recipe.healthLabels }}</td>
+                    </tr>
+                    <tr>
+                        <th>Cautions</th>
+                        <td>{{ recipe.cautions }}</td>
+                    </tr> -->
+                    <tr>
+                        <th>Cuisine Type</th>
+                        <td>{{ recipe.cuisineType }}</td>
+                    </tr>
+                    <tr>
+                        <th>Meal Type</th>
+                        <td>{{ recipe.mealType }}</td>
+                    </tr>
+                    <tr>
+                        <th>Dish Type</th>
+                        <td>{{ recipe.dishType }}</td>
+                    </tr>
+                </table>
+            </section>
+            <section class="ingredients">
+                <h2>Ingredients</h2>
+                <ul>
+                    {% for ingredient in meta_data.Ingredients.split(',') %}
+                        <li>{{ ingredient }}</li>
+                    {% endfor %}
+                </ul>
+            </section>
+        </div>
+        <h2>Nutritional Analysis</h2>
+        <div class="nutritional-analysis-container">
+                <table>
+                    <tr>
+                        <th>Property</th>
+                        <th>Value</th>
+                        <th>%</th>
+                    </tr>
+                    <tr>
+                        <td>Srno</td>
+                        <td>{{ detailed_data.Srno }}</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td>ENERC_KCAL</td>
+                        <td>{{ detailed_data.ENERC_KCAL }}</td>
+                        <td>{{ detailed_data['ENERC_KCAL%'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>FAT</td>
+                        <td>{{ detailed_data.FAT }}</td>
+                        <td>{{ detailed_data['FAT%'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>FASAT</td>
+                        <td>{{ detailed_data.FASAT }}</td>
+                        <td>{{ detailed_data['FASAT%'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>PROCNT</td>
+                        <td>{{ detailed_data.PROCNT }}</td>
+                        <td>{{ detailed_data['PROCNT%'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>CHOLE</td>
+                        <td>{{ detailed_data.CHOLE }}</td>
+                        <td>{{ detailed_data['CHOLE%'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>CHOCDF</td>
+                        <td>{{ detailed_data.CHOCDF }}</td>
+                        <td>{{ detailed_data['CHOCDF%'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>FIBTG</td>
+                        <td>{{ detailed_data.FIBTG }}</td>
+                        <td>{{ detailed_data['FIBTG%'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>FATRN</td>
+                        <td>{{ detailed_data.FATRN }}</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td>FAMS</td>
+                        <td>{{ detailed_data.FAMS }}</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td>FAPU</td>
+                        <td>{{ detailed_data.FAPU }}</td>
+                        <td>N/A</td>
+                    </tr>
+                </table>
+
+                <table>
+                    <tr>
+                        <th>Property</th>
+                        <th>Value</th>
+                        <th>%</th>
+                    </tr>
+                    <tr>
+                        <td>SUGAR</td>
+                        <td>{{ detailed_data.SUGAR }}</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td>CHOCDF.net</td>
+                        <td>{{ detailed_data['CHOCDF.net'] }}</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td>NA</td>
+                        <td>{{ detailed_data.NA }}</td>
+                        <td>{{ detailed_data['NA%'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>CA</td>
+                        <td>{{ detailed_data.CA }}</td>
+                        <td>{{ detailed_data['CA%'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>FE</td>
+                        <td>{{ detailed_data.FE }}</td>
+                        <td>{{ detailed_data['FE%'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>ZN</td>
+                        <td>{{ detailed_data.ZN }}</td>
+                        <td>{{ detailed_data['ZN%'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>VITC</td>
+                        <td>{{ detailed_data.VITC }}</td>
+                        <td>{{ detailed_data['VITC%'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>THIA</td>
+                        <td>{{ detailed_data.THIA }}</td>
+                        <td>{{ detailed_data['THIA%'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>NIA</td>
+                        <td>{{ detailed_data.NIA }}</td>
+                        <td>{{ detailed_data['NIA%'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>VITB6A</td>
+                        <td>{{ detailed_data.VITB6A }}</td>
+                        <td>{{ detailed_data['VITB6A%'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>MG</td>
+                        <td>{{ detailed_data.MG }}</td>
+                        <td>{{ detailed_data['MG%'] }}</td>
+                    </tr>
+                </table>
+
+                <table>
+                    <tr>
+                        <th>Property</th>
+                        <th>Value</th>
+                        <th>%</th>
+                    </tr>
+                    <tr>
+                        <td>K</td>
+                        <td>{{ detailed_data.K }}</td>
+                        <td>{{ detailed_data['K%'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>P</td>
+                        <td>{{ detailed_data.P }}</td>
+                        <td>{{ detailed_data['P%'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>VITA_RAE</td>
+                        <td>{{ detailed_data.VITA_RAE }}</td>
+                        <td>{{ detailed_data['VITA_RAE%'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>RIBF</td>
+                        <td>{{ detailed_data.RIBF }}</td>
+                        <td>{{ detailed_data['RIBF%'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>FOLDFE</td>
+                        <td>{{ detailed_data.FOLDFE }}</td>
+                        <td>{{ detailed_data['FOLDFE%'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>VITB12</td>
+                        <td>{{ detailed_data.VITB12 }}</td>
+                        <td>{{ detailed_data['VITB12%'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>VITD</td>
+                        <td>{{ detailed_data.VITD }}</td>
+                        <td>{{ detailed_data['VITD%'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>TOCPHA</td>
+                        <td>{{ detailed_data.TOCPHA }}</td>
+                        <td>{{ detailed_data['TOCPHA%'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>VITK1</td>
+                        <td>{{ detailed_data.VITK1 }}</td>
+                        <td>{{ detailed_data['VITK1%'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>WATER</td>
+                        <td>{{ detailed_data.WATER }}</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td>FOLFD</td>
+                        <td>{{ detailed_data.FOLFD }}</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td>FOLAC</td>
+                        <td>{{ detailed_data.FOLAC }}</td>
+                        <td>N/A</td>
+                    </tr>
+                </table>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2023 Celiac Disease Meal Planner</p>
+    </footer>
+</body>
+<script>
+    function goBack() {
+      window.history.back();
+    }
+</script>
+</html>
