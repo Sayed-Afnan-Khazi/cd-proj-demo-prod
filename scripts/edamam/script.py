@@ -47,7 +47,7 @@ Subject: {subject}
 ########################################
 
 
-filteredRecipes = pd.read_csv('output-datasets/Filtered-Non_Gluten-IndianFoodRecipes.csv')
+filteredRecipes = pd.read_csv('../../output-datasets/Filtered-Non_Gluten-IndianFoodRecipes.csv')
 
 key_set = 1 # 1 for first set of keys, 2 for second set of keys
 
@@ -137,8 +137,8 @@ try:
             print("Saving current results to CSV files")
             log_message += f'''{datetime.now()} Saving current results to CSV files
 '''
-            recipeOverview.to_csv('output-datasets/RecipeOverview.csv', index=False)
-            recipeDetailed.to_csv('output-datasets/RecipeDetailed.csv', index=False)
+            recipeOverview.to_csv('../../output-datasets/RecipeOverview.csv', index=False)
+            recipeDetailed.to_csv('../../output-datasets/RecipeDetailed.csv', index=False)
             
             time.sleep(60)
 
@@ -153,8 +153,8 @@ try:
                 log_message += f'''{datetime.now()} No more keys available. Stopping the script.
 '''
                 print("Saving current results to CSV files")
-                recipeOverview.to_csv('output-datasets/RecipeOverview.csv', index=False)
-                recipeDetailed.to_csv('output-datasets/RecipeDetailed.csv', index=False)
+                recipeOverview.to_csv('../../output-datasets/RecipeOverview.csv', index=False)
+                recipeDetailed.to_csv('../../output-datasets/RecipeDetailed.csv', index=False)
                 send_email(log_message,subject="SCRIPT STOPPED DUE TO EXHAUSTION OF KEYS!")
                 break
             print("*"*50,"Switching to key set",key_set,"*"*50)
@@ -163,8 +163,8 @@ try:
 
         if good_count%1000 == 0:
             print("Saving current results to CSV files")
-            recipeOverview.to_csv('output-datasets/RecipeOverview.csv', index=False)
-            recipeDetailed.to_csv('output-datasets/RecipeDetailed.csv', index=False)
+            recipeOverview.to_csv('../../output-datasets/RecipeOverview.csv', index=False)
+            recipeDetailed.to_csv('../../output-datasets/RecipeDetailed.csv', index=False)
 
             print("*"*50,"1000 GOOD RECIPES REACHED!","*"*50)
             print("FINAL STATISTICS:")
@@ -183,8 +183,8 @@ try:
 except KeyboardInterrupt:
     print("A keyboard interrupt stopped the script.")
     print("Saving current results to CSV files")
-    recipeOverview.to_csv('output-datasets/RecipeOverview.csv', index=False)
-    recipeDetailed.to_csv('output-datasets/RecipeDetailed.csv', index=False)
+    recipeOverview.to_csv('../../output-datasets/RecipeOverview.csv', index=False)
+    recipeDetailed.to_csv('../../output-datasets/RecipeDetailed.csv', index=False)
     print("FINAL STATISTICS:")
     print("COUNT:",count)
     print("GOOD COUNT:",good_count)
@@ -199,7 +199,7 @@ except KeyboardInterrupt:
 
 except Exception as e:
     print("Saving current results to CSV files")
-    recipeOverview.to_csv('output-datasets/RecipeOverview.csv', index=False)
+    recipeOverview.to_csv('../../output-datasets/RecipeOverview.csv', index=False)
     recipeDetailed.to_csv('output-datasets/RecipeDetailed.csv', index=False)
 
     print("*"*50,"RUNTIME ERROR OCCURED!","*"*50)
