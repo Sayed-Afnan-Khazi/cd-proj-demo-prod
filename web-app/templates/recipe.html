@@ -77,7 +77,7 @@
             margin-bottom: 20px;
             text-align: center;
         }
-        a {
+        .fake-button {
             background-color: #376a45;
             color: #fff;
             border: none;
@@ -89,8 +89,11 @@
             margin: auto;
             text-align: center;
         }
-        a:hover {
+        .fake-button:hover {
             background-color: #142B13;
+        }
+        a {
+            color: #376a45;
         }
         footer {
             background-color: #376a45;
@@ -102,7 +105,8 @@
         }
         .back-button {
             background-color: #376a45; 
-            border: none;
+            border: 1px solid #376a45;
+            border-radius: 5px;
             color: white;
             padding: 15px 32px;
             text-align: center;
@@ -165,10 +169,14 @@
             text-align: center;
             text-decoration: none;
             display: block;
+            margin: auto;
             margin-top: 25px;
             margin-bottom: 25px;
         }
-            
+
+        .view-recipe:hover {
+            background-color: #142B13;
+        }
     </style>
 </head>
 <body>
@@ -176,8 +184,8 @@
         <h1>Celiac Disease Meal Planner</h1>
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Recipes</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/browse">Recipes</a></li>
                 <li><a href="#">Your Meal Plans</a></li>
                 <li><a href="#">Shopping List</a></li>
                 <li><a href="#">About</a></li>
@@ -186,258 +194,262 @@
     </header>
     <main>
         <button class="back-button" onclick="goBack()">Go Back</button> 
-        <div class="top-container">
-            <section class="overview">
-                <h2>Recipe Overview</h2>
-                <h3 class="recipe-name">{{ recipe.RecipeName }}</h3>
-                <table>
-                    <tr>
-                        <th>Srno</th>
-                        <td>{{ recipe.Srno }}</td>
-                    </tr>
-                    <tr>
-                        <th>Calories</th>
-                        <td>{{ recipe.calories }}</td>
-                    </tr>
-                    <tr>
-                        <th>Total CO2 Emissions</th>
-                        <td>{{ recipe.totalCO2Emissions }}</td>
-                    </tr>
-                    <tr>
-                        <th>CO2 Emissions Class</th>
-                        <td>{{ recipe.co2EmissionsClass }}</td>
-                    </tr>
-                    <tr>
-                        <th>Total Weight</th>
-                        <td>{{ recipe.totalWeight }}</td>
-                    </tr>
-                    <!-- <tr>
-                        <th>Diet Labels</th>
-                        <td>{{ recipe.dietLabels }}</td>
-                    </tr>
-                    <tr>
-                        <th>Health Labels</th>
-                        <td>{{ recipe.healthLabels }}</td>
-                    </tr>
-                    <tr>
-                        <th>Cautions</th>
-                        <td>{{ recipe.cautions }}</td>
-                    </tr> -->
-                    <tr>
-                        <th>Cuisine Type</th>
-                        <td>{{ recipe.cuisineType }}</td>
-                    </tr>
-                    <tr>
-                        <th>Meal Type</th>
-                        <td>{{ recipe.mealType }}</td>
-                    </tr>
-                    <tr>
-                        <th>Dish Type</th>
-                        <td>{{ recipe.dishType }}</td>
-                    </tr>
-                </table>
-            </section>
-            <section class="ingredients">
-                <h2>Ingredients</h2>
-                <ul>
-                    {% for ingredient in recipe.Ingredients.split(',') %}
-                        <li>{{ ingredient }}</li>
-                    {% endfor %}
-                </ul>
-                <a href="{{ recipe.URL }}" class="view-recipe">View Instructions</a>
-            </section>
-        </div>
-        <h2>Nutritional Analysis</h2>
-        <div class="nutritional-analysis-container">
-                <table>
-                    <tr>
-                        <th>Property</th>
-                        <th>Value</th>
-                        <th>%</th>
-                    </tr>
-                    <tr>
-                        <td>Energy</td>
-                        <td>{{ recipe.ENERC_KCAL }}</td>
-                        <td>{{ recipe['ENERC_KCAL_perc'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>Total lipid (fat)</td>
-                        <td>{{ recipe.FAT }}</td>
-                        <td>{{ recipe['FAT_perc'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>Fatty acids, total saturated</td>
-                        <td>{{ recipe.FASAT }}</td>
-                        <td>{{ recipe['FASAT_perc'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>Protein</td>
-                        <td>{{ recipe.PROCNT }}</td>
-                        <td>{{ recipe['PROCNT_perc'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>Cholesterol</td>
-                        <td>{{ recipe.CHOLE }}</td>
-                        <td>{{ recipe['CHOLE_perc'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>Carbohydrate, by difference</td>
-                        <td>{{ recipe.CHOCDF }}</td>
-                        <td>{{ recipe['CHOCDF_perc'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>Fiber, total dietary</td>
-                        <td>{{ recipe.FIBTG }}</td>
-                        <td>{{ recipe['FIBTG_perc'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>Fatty acids, total trans</td>
-                        <td>{{ recipe.FATRN }}</td>
-                        <td>N/A</td>
-                    </tr>
-                    <tr>
-                        <td>Fatty acids, total monounsaturated</td>
-                        <td>{{ recipe.FAMS }}</td>
-                        <td>N/A</td>
-                    </tr>
-                    <tr>
-                        <td>Fatty acids, total polyunsaturated</td>
-                        <td>{{ recipe.FAPU }}</td>
-                        <td>N/A</td>
-                    </tr>
-                </table>
+        {% if recipe == "null" %}
+            <p>Recipe Not Found.</p>
+        {% else %}
+            <div class="top-container">
+                <section class="overview">
+                    <h2>Recipe Overview</h2>
+                    <h3 class="recipe-name">{{ recipe.RecipeName }}</h3>
+                    <table>
+                        <tr>
+                            <th>Srno</th>
+                            <td>{{ recipe.Srno }}</td>
+                        </tr>
+                        <tr>
+                            <th>Calories</th>
+                            <td>{{ recipe.calories }}</td>
+                        </tr>
+                        <tr>
+                            <th>Total CO2 Emissions</th>
+                            <td>{{ recipe.totalCO2Emissions }}</td>
+                        </tr>
+                        <tr>
+                            <th>CO2 Emissions Class</th>
+                            <td>{{ recipe.co2EmissionsClass }}</td>
+                        </tr>
+                        <tr>
+                            <th>Total Weight</th>
+                            <td>{{ recipe.totalWeight }}</td>
+                        </tr>
+                        <!-- <tr>
+                            <th>Diet Labels</th>
+                            <td>{{ recipe.dietLabels }}</td>
+                        </tr>
+                        <tr>
+                            <th>Health Labels</th>
+                            <td>{{ recipe.healthLabels }}</td>
+                        </tr>
+                        <tr>
+                            <th>Cautions</th>
+                            <td>{{ recipe.cautions }}</td>
+                        </tr> -->
+                        <tr>
+                            <th>Cuisine Type</th>
+                            <td>{{ recipe.cuisineType }}</td>
+                        </tr>
+                        <tr>
+                            <th>Meal Type</th>
+                            <td>{{ recipe.mealType }}</td>
+                        </tr>
+                        <tr>
+                            <th>Dish Type</th>
+                            <td>{{ recipe.dishType }}</td>
+                        </tr>
+                    </table>
+                </section>
+                <section class="ingredients">
+                    <h2>Ingredients</h2>
+                    <ul>
+                        {% for ingredient in recipe.Ingredients.split(',') %}
+                            <li>{{ ingredient }}</li>
+                        {% endfor %}
+                    </ul>
+                    <a href="{{ recipe.URL }}" class="view-recipe">View Instructions</a>
+                </section>
+            </div>
+            <h2>Nutritional Analysis</h2>
+            <div class="nutritional-analysis-container">
+                    <table>
+                        <tr>
+                            <th>Property</th>
+                            <th>Value</th>
+                            <th>%</th>
+                        </tr>
+                        <tr>
+                            <td>Energy</td>
+                            <td>{{ recipe.ENERC_KCAL }}</td>
+                            <td>{{ recipe['ENERC_KCAL_perc'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Total lipid (fat)</td>
+                            <td>{{ recipe.FAT }}</td>
+                            <td>{{ recipe['FAT_perc'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Fatty acids, total saturated</td>
+                            <td>{{ recipe.FASAT }}</td>
+                            <td>{{ recipe['FASAT_perc'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Protein</td>
+                            <td>{{ recipe.PROCNT }}</td>
+                            <td>{{ recipe['PROCNT_perc'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Cholesterol</td>
+                            <td>{{ recipe.CHOLE }}</td>
+                            <td>{{ recipe['CHOLE_perc'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Carbohydrate, by difference</td>
+                            <td>{{ recipe.CHOCDF }}</td>
+                            <td>{{ recipe['CHOCDF_perc'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Fiber, total dietary</td>
+                            <td>{{ recipe.FIBTG }}</td>
+                            <td>{{ recipe['FIBTG_perc'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Fatty acids, total trans</td>
+                            <td>{{ recipe.FATRN }}</td>
+                            <td>N/A</td>
+                        </tr>
+                        <tr>
+                            <td>Fatty acids, total monounsaturated</td>
+                            <td>{{ recipe.FAMS }}</td>
+                            <td>N/A</td>
+                        </tr>
+                        <tr>
+                            <td>Fatty acids, total polyunsaturated</td>
+                            <td>{{ recipe.FAPU }}</td>
+                            <td>N/A</td>
+                        </tr>
+                    </table>
 
-                <table>
-                    <tr>
-                        <th>Property</th>
-                        <th>Value</th>
-                        <th>%</th>
-                    </tr>
-                    <tr>
-                        <td>Sugars, total</td>
-                        <td>{{ recipe.SUGAR }}</td>
-                        <td>N/A</td>
-                    </tr>
-                    <tr>
-                        <td>Carbohydrate (net)</td>
-                        <td>{{ recipe['CHOCDF_net'] }}</td>
-                        <td>N/A</td>
-                    </tr>
-                    <tr>
-                        <td>Sodium, Na</td>
-                        <td>{{ recipe.NA }}</td>
-                        <td>{{ recipe['NA_perc'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>Calcium, Ca</td>
-                        <td>{{ recipe.CA }}</td>
-                        <td>{{ recipe['CA_perc'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>Iron, Fe</td>
-                        <td>{{ recipe.FE }}</td>
-                        <td>{{ recipe['FE_perc'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>Zinc, Zn</td>
-                        <td>{{ recipe.ZN }}</td>
-                        <td>{{ recipe['ZN_perc'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>Vitamin C, total ascorbic acid</td>
-                        <td>{{ recipe.VITC }}</td>
-                        <td>{{ recipe['VITC_perc'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>Thiamin</td>
-                        <td>{{ recipe.THIA }}</td>
-                        <td>{{ recipe['THIA_perc'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>Niacin</td>
-                        <td>{{ recipe.NIA }}</td>
-                        <td>{{ recipe['NIA_perc'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>Vitamin B-6</td>
-                        <td>{{ recipe.VITB6A }}</td>
-                        <td>{{ recipe['VITB6A_perc'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>Magnesium</td>
-                        <td>{{ recipe.MG }}</td>
-                        <td>{{ recipe['MG_perc'] }}</td>
-                    </tr>
-                </table>
+                    <table>
+                        <tr>
+                            <th>Property</th>
+                            <th>Value</th>
+                            <th>%</th>
+                        </tr>
+                        <tr>
+                            <td>Sugars, total</td>
+                            <td>{{ recipe.SUGAR }}</td>
+                            <td>N/A</td>
+                        </tr>
+                        <tr>
+                            <td>Carbohydrate (net)</td>
+                            <td>{{ recipe['CHOCDF_net'] }}</td>
+                            <td>N/A</td>
+                        </tr>
+                        <tr>
+                            <td>Sodium, Na</td>
+                            <td>{{ recipe.NA }}</td>
+                            <td>{{ recipe['NA_perc'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Calcium, Ca</td>
+                            <td>{{ recipe.CA }}</td>
+                            <td>{{ recipe['CA_perc'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Iron, Fe</td>
+                            <td>{{ recipe.FE }}</td>
+                            <td>{{ recipe['FE_perc'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Zinc, Zn</td>
+                            <td>{{ recipe.ZN }}</td>
+                            <td>{{ recipe['ZN_perc'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Vitamin C, total ascorbic acid</td>
+                            <td>{{ recipe.VITC }}</td>
+                            <td>{{ recipe['VITC_perc'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Thiamin</td>
+                            <td>{{ recipe.THIA }}</td>
+                            <td>{{ recipe['THIA_perc'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Niacin</td>
+                            <td>{{ recipe.NIA }}</td>
+                            <td>{{ recipe['NIA_perc'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Vitamin B-6</td>
+                            <td>{{ recipe.VITB6A }}</td>
+                            <td>{{ recipe['VITB6A_perc'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Magnesium</td>
+                            <td>{{ recipe.MG }}</td>
+                            <td>{{ recipe['MG_perc'] }}</td>
+                        </tr>
+                    </table>
 
-                <table>
-                    <tr>
-                        <th>Property</th>
-                        <th>Value</th>
-                        <th>%</th>
-                    </tr>
-                    <tr>
-                        <td>Potassium, K</td>
-                        <td>{{ recipe.K }}</td>
-                        <td>{{ recipe['K_perc'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>Phosphorus, P</td>
-                        <td>{{ recipe.P }}</td>
-                        <td>{{ recipe['P_perc'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>Vitamin A, RAE</td>
-                        <td>{{ recipe.VITA_RAE }}</td>
-                        <td>{{ recipe['VITA_RAE_perc'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>Riboflavin</td>
-                        <td>{{ recipe.RIBF }}</td>
-                        <td>{{ recipe['RIBF_perc'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>Folate, DFE</td>
-                        <td>{{ recipe.FOLDFE }}</td>
-                        <td>{{ recipe['FOLDFE_perc'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>Vitamin B-12</td>
-                        <td>{{ recipe.VITB12 }}</td>
-                        <td>{{ recipe['VITB12_perc'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>Vitamin D (D2 + D3)</td>
-                        <td>{{ recipe.VITD }}</td>
-                        <td>{{ recipe['VITD_perc'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>Vitamin E (alpha-tocopherol)</td>
-                        <td>{{ recipe.TOCPHA }}</td>
-                        <td>{{ recipe['TOCPHA_perc'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>Vitamin K (phylloquinone)</td>
-                        <td>{{ recipe.VITK1 }}</td>
-                        <td>{{ recipe['VITK1_perc'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>Water</td>
-                        <td>{{ recipe.WATER }}</td>
-                        <td>N/A</td>
-                    </tr>
-                    <tr>
-                        <td>Folate, food</td>
-                        <td>{{ recipe.FOLFD }}</td>
-                        <td>N/A</td>
-                    </tr>
-                    <tr>
-                        <td>Folic acid</td>
-                        <td>{{ recipe.FOLAC }}</td>
-                        <td>N/A</td>
-                    </tr>
-                </table>
-        </div>
+                    <table>
+                        <tr>
+                            <th>Property</th>
+                            <th>Value</th>
+                            <th>%</th>
+                        </tr>
+                        <tr>
+                            <td>Potassium, K</td>
+                            <td>{{ recipe.K }}</td>
+                            <td>{{ recipe['K_perc'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Phosphorus, P</td>
+                            <td>{{ recipe.P }}</td>
+                            <td>{{ recipe['P_perc'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Vitamin A, RAE</td>
+                            <td>{{ recipe.VITA_RAE }}</td>
+                            <td>{{ recipe['VITA_RAE_perc'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Riboflavin</td>
+                            <td>{{ recipe.RIBF }}</td>
+                            <td>{{ recipe['RIBF_perc'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Folate, DFE</td>
+                            <td>{{ recipe.FOLDFE }}</td>
+                            <td>{{ recipe['FOLDFE_perc'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Vitamin B-12</td>
+                            <td>{{ recipe.VITB12 }}</td>
+                            <td>{{ recipe['VITB12_perc'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Vitamin D (D2 + D3)</td>
+                            <td>{{ recipe.VITD }}</td>
+                            <td>{{ recipe['VITD_perc'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Vitamin E (alpha-tocopherol)</td>
+                            <td>{{ recipe.TOCPHA }}</td>
+                            <td>{{ recipe['TOCPHA_perc'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Vitamin K (phylloquinone)</td>
+                            <td>{{ recipe.VITK1 }}</td>
+                            <td>{{ recipe['VITK1_perc'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Water</td>
+                            <td>{{ recipe.WATER }}</td>
+                            <td>N/A</td>
+                        </tr>
+                        <tr>
+                            <td>Folate, food</td>
+                            <td>{{ recipe.FOLFD }}</td>
+                            <td>N/A</td>
+                        </tr>
+                        <tr>
+                            <td>Folic acid</td>
+                            <td>{{ recipe.FOLAC }}</td>
+                            <td>N/A</td>
+                        </tr>
+                    </table>
+            </div>
+        {% endif %}
     </main>
     <footer>
         <p>&copy; 2023 Celiac Disease Meal Planner</p>

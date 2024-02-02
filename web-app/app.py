@@ -147,7 +147,7 @@ def recipe_details(id):
     recipe = Recipes.query.filter_by(Srno=id).all()
     if recipe:
         return render_template('recipe.html', recipe=recipe[0].__dict__)
-    return "Recipe not found"
+    return render_template('recipe.html', recipe="null")
 
 if __name__=='__main__':
     app.run(debug=True)

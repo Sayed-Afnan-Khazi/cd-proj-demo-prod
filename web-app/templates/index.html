@@ -78,7 +78,7 @@
             margin-bottom: 20px;
             text-align: center;
         }
-        a {
+        .fake-button {
             background-color: #376a45;
             color: #fff;
             border: none;
@@ -90,8 +90,11 @@
             margin: auto;
             text-align: center;
         }
-        a:hover {
+        .fake-button:hover {
             background-color: #142B13;
+        }
+        a {
+            color: #376a45;
         }
         footer {
             background-color: #376a45;
@@ -100,6 +103,24 @@
         }
         footer > p {
             color: white;
+        }
+
+        .get-started-button {
+            background-color: #376a45;
+            text-decoration: none;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 30vw;
+            margin: auto;
+            text-align: center;
+        }
+
+        .get-started-button:hover {
+            background-color: #142B13;
         }
     </style>
 </head>
@@ -120,7 +141,7 @@
         <section>
             <h2>Welcome to the Celiac Disease Meal Planner</h2>
             <p>Our mission is to help celiac disease patients plan their meals with ease. We provide a variety of recipes, meal plans, and a shopping list feature to make meal planning a breeze.</p>
-            <a href="/browse">Get Started</a>
+            <a href="/browse" class="get-started-button">Get Started</a>
         </section>
     </main>
     <footer>
