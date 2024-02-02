@@ -127,9 +127,9 @@
                 </tr>
                 {% for record in recipes %}
                 <tr>
-                    <td><p>{{ record['Srno'] }}</p></td>
+                    <td><p>{{ record[0] }}</p></td>
                     <td><h3><a 
-                        href="/recipe-details/{{ record['Srno'] }}">{{ record['RecipeName'] }}</a></h3></td>
+                        href="/recipe-details/{{ record[0] }}">{{ record[1] }}</a></h3></td>
                 </tr>
                 {% endfor %}
             </table>

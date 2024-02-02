@@ -14,14 +14,106 @@ import pandas as pd
 load_dotenv()
 app = Flask(__name__, template_folder='templates')
 
-# SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
-# app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
+# Get the current directory
+basedir = os.path.abspath(os.path.dirname(__file__))
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'test.db')
 
 bcrypt = Bcrypt(app)
 # server_session=Session(app)
-# db = SQLAlchemy(app)
+db = SQLAlchemy(app)
+
+class Recipes(db.Model):
+    __tablename__ = 'Recipes'
+    # RecipeMeta
+    Metano = db.Column(db.Integer)
+    Srno = db.Column(db.Integer, primary_key=True)
+    RecipeName = db.Column(db.String)
+    TranslatedRecipeName = db.Column(db.String)
+    Ingredients = db.Column(db.String)
+    TranslatedIngredients = db.Column(db.String)
+    PrepTimeInMins = db.Column(db.Integer)
+    CookTimeInMins = db.Column(db.Integer)
+    TotalTimeInMins = db.Column(db.Integer)
+    Servings = db.Column(db.Integer)
+    Cuisine = db.Column(db.String)
+    Course = db.Column(db.String)
+    Diet = db.Column(db.String)
+    Instructions = db.Column(db.String)
+    TranslatedInstructions = db.Column(db.String)
+    URL = db.Column(db.String)
+    # RecipeOverview
+    uri = db.Column(db.String)
+    yield_ = db.Column(db.Float)  # 'yield' is a reserved keyword in Python
+    calories = db.Column(db.Float)
+    totalCO2Emissions = db.Column(db.Float)
+    co2EmissionsClass = db.Column(db.String)
+    totalWeight = db.Column(db.Float)
+    dietLabels = db.Column(db.String)
+    healthLabels = db.Column(db.String)
+    cautions = db.Column(db.String)
+    cuisineType = db.Column(db.String)
+    mealType = db.Column(db.String)
+    dishType = db.Column(db.String)
+    # RecipeDetailed
+    ENERC_KCAL = db.Column(db.Float)
+    ENERC_KCAL_perc = db.Column(db.Float)
+    FAT = db.Column(db.Float)
+    FAT_perc = db.Column(db.Float)
+    FASAT = db.Column(db.Float)
+    FASAT_perc = db.Column(db.Float)
+    PROCNT = db.Column(db.Float)
+    PROCNT_perc = db.Column(db.Float)
+    CHOLE = db.Column(db.Float)
+    CHOLE_perc = db.Column(db.Float)
+    CHOCDF = db.Column(db.Float)
+    CHOCDF_perc = db.Column(db.Float)
+    FIBTG = db.Column(db.Float)
+    FIBTG_perc = db.Column(db.Float)
+    FATRN = db.Column(db.Float)
+    FAMS = db.Column(db.Float)
+    FAPU = db.Column(db.Float)
+    SUGAR = db.Column(db.Float)
+    CHOCDF_net = db.Column(db.Float)
+    NA = db.Column(db.Float)
+    NA_perc = db.Column(db.Float)
+    CA = db.Column(db.Float)
+    CA_perc = db.Column(db.Float)
+    FE = db.Column(db.Float)
+    FE_perc = db.Column(db.Float)
+    ZN = db.Column(db.Float)
+    ZN_perc = db.Column(db.Float)
+    VITC = db.Column(db.Float)
+    VITC_perc = db.Column(db.Float)
+    THIA = db.Column(db.Float)
+    THIA_perc = db.Column(db.Float)
+    NIA = db.Column(db.Float)
+    NIA_perc = db.Column(db.Float)
+    VITB6A = db.Column(db.Float)
+    VITB6A_perc = db.Column(db.Float)
+    MG = db.Column(db.Float)
+    MG_perc = db.Column(db.Float)
+    K = db.Column(db.Float)
+    K_perc = db.Column(db.Float)
+    P = db.Column(db.Float)
+    P_perc = db.Column(db.Float)
+    VITA_RAE = db.Column(db.Float)
+    VITA_RAE_perc = db.Column(db.Float)
+    RIBF = db.Column(db.Float)
+    RIBF_perc = db.Column(db.Float)
+    FOLDFE = db.Column(db.Float)
+    FOLDFE_perc = db.Column(db.Float)
+    VITB12 = db.Column(db.Float)
+    VITB12_perc = db.Column(db.Float)
+    VITD = db.Column(db.Float)
+    VITD_perc = db.Column(db.Float)
+    TOCPHA = db.Column(db.Float)
+    TOCPHA_perc = db.Column(db.Float)
+    VITK1 = db.Column(db.Float)
+    VITK1_perc = db.Column(db.Float)
+    WATER = db.Column(db.Float)
+    FOLFD = db.Column(db.Float)
+    FOLAC = db.Column(db.Float)
+
 
 # Flask Bcrypt
 bcrypt = Bcrypt()
@@ -47,33 +139,14 @@ def home():
 
 @app.route('/browse')
 def browse():
-    # Read the EVERY RECIPE CSV file
-    data = pd.read_csv('../output-datasets/Filtered-Non_Gluten-IndianFoodRecipes.csv')
-
-    # Fetching valid srno's from the CSV file
-    sr_data = pd.read_csv('../output-datasets/RecipeOverviewV1.csv')
-    srno_list = sr_data['Srno'].tolist()
-
-    # Only displaying the data which is present in the RecipeOverviewV1.csv file
-    recipes = []
-    for index, row in data.iterrows():
-        if row['Srno'] in srno_list:
-            # Convert the data to a list of dictionaries
-            recipes.append(row.to_dict())
-
+    recipes = Recipes.query.with_entities(Recipes.Srno, Recipes.RecipeName).all()
     return render_template('browse.html', recipes=recipes)
 
 @app.route('/recipe-details/<int:id>')
 def recipe_details(id):
-    data = pd.read_csv('../output-datasets/RecipeOverviewV1.csv')
-    recipe = data[data['Srno'] == id].to_dict('records')
+    recipe = Recipes.query.filter_by(Srno=id).all()
     if recipe:
-        meta = pd.read_csv('../output-datasets/Filtered-Non_Gluten-IndianFoodRecipes.csv')
-        meta_data = meta[meta['Srno'] == id].to_dict('records')
-
-        detailed = pd.read_csv('../output-datasets/RecipeDetailedV1.csv')
-        detailed_data = detailed[detailed['Srno'] == id].to_dict('records')
-        return render_template('recipe.html', recipe=recipe[0], meta_data=meta_data[0], detailed_data=detailed_data[0])
+        return render_template('recipe.html', recipe=recipe[0].__dict__)
     return "Recipe not found"
 
 if __name__=='__main__':
