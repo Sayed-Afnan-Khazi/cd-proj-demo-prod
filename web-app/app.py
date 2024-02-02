@@ -149,5 +149,17 @@ def recipe_details(id):
         return render_template('recipe.html', recipe=recipe[0].__dict__)
     return render_template('recipe.html', recipe="null")
 
+@app.route('/search', methods=['GET', 'POST'])
+def search():
+    if request.method == 'POST':
+        search = request.form['search']
+        recipes = Recipes.query.filter(or_(Recipes.RecipeName.like(f'%{search}%'),
+                                            Recipes.TranslatedRecipeName.like(f'%{search}%'),
+                                            Recipes.Ingredients.like(f'%{search}%'),
+                                            Recipes.Cuisine.like(f'%{search}%')
+                                            )).with_entities(Recipes.Srno, Recipes.RecipeName).all()
+        return render_template('search.html', recipes=recipes)
+    return render_template('search.html',recipes=None)
+
 if __name__=='__main__':
     app.run(debug=True)
