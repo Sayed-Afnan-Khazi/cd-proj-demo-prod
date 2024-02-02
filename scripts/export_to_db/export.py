@@ -10,8 +10,9 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'test.db')
 db = SQLAlchemy(app)
 
-class RecipeMeta(db.Model):
-    __tablename__ = 'RecipeMeta'
+class Recipes(db.Model):
+    __tablename__ = 'Recipes'
+    # RecipeMeta
     Metano = db.Column(db.Integer)
     Srno = db.Column(db.Integer, primary_key=True)
     RecipeName = db.Column(db.String)
@@ -28,11 +29,7 @@ class RecipeMeta(db.Model):
     Instructions = db.Column(db.String)
     TranslatedInstructions = db.Column(db.String)
     URL = db.Column(db.String)
-
-
-class RecipeOverviewV1(db.Model):
-    __tablename__ = 'RecipeOverviewV1'
-    Srno = db.Column(db.Integer, primary_key=True)
+    # RecipeOverview
     uri = db.Column(db.String)
     yield_ = db.Column(db.Float)  # 'yield' is a reserved keyword in Python
     calories = db.Column(db.Float)
@@ -45,10 +42,7 @@ class RecipeOverviewV1(db.Model):
     cuisineType = db.Column(db.String)
     mealType = db.Column(db.String)
     dishType = db.Column(db.String)
-
-class RecipeDetailedV1(db.Model):
-    __tablename__ = 'RecipeDetailedV1'
-    Srno = db.Column(db.Integer, db.ForeignKey('RecipeOverviewV1.Srno'), primary_key=True)
+    # RecipeDetailed
     ENERC_KCAL = db.Column(db.Float)
     ENERC_KCAL_perc = db.Column(db.Float)
     FAT = db.Column(db.Float)
@@ -111,21 +105,23 @@ class RecipeDetailedV1(db.Model):
 with app.app_context():
     db.create_all()
 
-def insert_data_from_csv(model, csv_file_path):
-    df = pd.read_csv(csv_file_path)
-    for index, row in df.iterrows():
-        # print(row.to_dict())
-        record = model(**row.to_dict())
-        with app.app_context():
-            db.session.add(record)
-            print("Added a record")
-            db.session.commit()
+def insert_data_from_csv(model, recipe_overview_file_path, recipe_detailed_file_path, recipe_meta_file_path):
+    recipe_overview_df = pd.read_csv(recipe_overview_file_path)
+    recipe_detailed_df = pd.read_csv(recipe_detailed_file_path)
+    recipe_meta_df = pd.read_csv(recipe_meta_file_path)
+
+    for recipe_overview_row, recipe_detailed_row, recipe_meta_row in zip(recipe_overview_df.iterrows(), recipe_detailed_df.iterrows(), recipe_meta_df.iterrows()):
         
+        recipe_overview_row = recipe_overview_row[1]
+        recipe_detailed_row = recipe_detailed_row[1]
+        recipe_meta_row = recipe_meta_row[1]
 
-# insert_data_from_csv(RecipeOverviewV1, './datasets/RecipeOverviewV1.csv')
-# insert_data_from_csv(RecipeDetailedV1, './datasets/RecipeDetailedV1.csv')
-# insert_data_from_csv(RecipeMeta, '../../output-datasets/Filtered-Non_Gluten-IndianFoodRecipes.csv')
-
-# Select first 5 from RecipeOverviewV1
-# with app.app_context():
-#     print(list(map(lambda x: x., RecipeOverviewV1.query.limit(5).all())))
+        if not recipe_overview_row.empty or not recipe_detailed_row.empty:
+            record = model(**{**recipe_overview_row.to_dict(),**recipe_detailed_row.to_dict(),**recipe_meta_row.to_dict()})
+            with app.app_context():
+                db.session.add(record)
+                print("Added a record")
+                db.session.commit()
+        
+if __name__ == '__main__':
+    insert_data_from_csv(Recipes, './datasets/RecipeOverviewV1.csv','./datasets/RecipeDetailedV1.csv','../../output-datasets/Filtered-Non_Gluten-IndianFoodRecipes.csv')
