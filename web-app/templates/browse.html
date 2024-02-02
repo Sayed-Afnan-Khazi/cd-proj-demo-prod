@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse - Celiac Disease Meal Planner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #376a45;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h1 {
+            margin: 0;
+            font-size: 36px;
+            color: white;
+        }
+        nav a {
+            text-decoration: none;
+            color: #142B13;
+            font-size: 18px;
+            border: none; 
+            padding: 10px; 
+        } 
+        nav a:hover {
+            color: white;
+        }
+        main {
+            padding: 20px;
+            margin-bottom: 30vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        section {
+            margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+        }
+        section > p {
+            max-width: 80vh;
+        }
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        img {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        h3 {
+            margin: 0;
+            font-size: 20px;
+            color: #376a45;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .fake-button {
+            background-color: #376a45;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 30vw;
+            margin: auto;
+            text-align: center;
+        }
+        .fake-button:hover {
+            background-color: #142B13;
+        }
+        a {
+            color: #376a45;
+        }
+        footer {
+            background-color: #376a45;
+            padding: 20px;
+            text-align: center;
+        }
+        footer > p {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Celiac Disease Meal Planner</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="#">Recipes</a></li>
+                <li><a href="#">Your Meal Plans</a></li>
+                <li><a href="#">Shopping List</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <table>
+                <tr>
+                    <td><h2>Srno</h2></td>
+                    <td><h2>Recipe Name</h2></td>
+                </tr>
+                {% for record in recipes %}
+                <tr>
+                    <td><p>{{ record[0] }}</p></td>
+                    <td><h3><a 
+                        href="/recipe-details/{{ record[0] }}">{{ record[1] }}</a></h3></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Celiac Disease Meal Planner</p>
+    </footer>
+</body>
+</html>
