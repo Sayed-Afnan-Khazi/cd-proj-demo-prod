@@ -143,6 +143,31 @@
             border: solid 5px #142B13;
             margin: 5px;
         }
+
+        @media screen and (max-width: 600px) {
+            .top-container {
+                grid-template-columns: 1fr;
+            }
+            .nutritional-analysis-container {
+                    grid-template-columns: 1fr;
+            }
+        }
+
+        .view-recipe {
+            background-color: #376a45;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 30%;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
             
     </style>
 </head>
@@ -219,6 +244,7 @@
                         <li>{{ ingredient }}</li>
                     {% endfor %}
                 </ul>
+                <a href="{{ recipe.URL }}" class="view-recipe">View Instructions</a>
             </section>
         </div>
         <h2>Nutritional Analysis</h2>
@@ -232,37 +258,37 @@
                     <tr>
                         <td>Energy</td>
                         <td>{{ recipe.ENERC_KCAL }}</td>
-                        <td>{{ recipe['ENERC_KCAL%'] }}</td>
+                        <td>{{ recipe['ENERC_KCAL_perc'] }}</td>
                     </tr>
                     <tr>
                         <td>Total lipid (fat)</td>
                         <td>{{ recipe.FAT }}</td>
-                        <td>{{ recipe['FAT%'] }}</td>
+                        <td>{{ recipe['FAT_perc'] }}</td>
                     </tr>
                     <tr>
                         <td>Fatty acids, total saturated</td>
                         <td>{{ recipe.FASAT }}</td>
-                        <td>{{ recipe['FASAT%'] }}</td>
+                        <td>{{ recipe['FASAT_perc'] }}</td>
                     </tr>
                     <tr>
                         <td>Protein</td>
                         <td>{{ recipe.PROCNT }}</td>
-                        <td>{{ recipe['PROCNT%'] }}</td>
+                        <td>{{ recipe['PROCNT_perc'] }}</td>
                     </tr>
                     <tr>
                         <td>Cholesterol</td>
                         <td>{{ recipe.CHOLE }}</td>
-                        <td>{{ recipe['CHOLE%'] }}</td>
+                        <td>{{ recipe['CHOLE_perc'] }}</td>
                     </tr>
                     <tr>
                         <td>Carbohydrate, by difference</td>
                         <td>{{ recipe.CHOCDF }}</td>
-                        <td>{{ recipe['CHOCDF%'] }}</td>
+                        <td>{{ recipe['CHOCDF_perc'] }}</td>
                     </tr>
                     <tr>
                         <td>Fiber, total dietary</td>
                         <td>{{ recipe.FIBTG }}</td>
-                        <td>{{ recipe['FIBTG%'] }}</td>
+                        <td>{{ recipe['FIBTG_perc'] }}</td>
                     </tr>
                     <tr>
                         <td>Fatty acids, total trans</td>
@@ -294,53 +320,53 @@
                     </tr>
                     <tr>
                         <td>Carbohydrate (net)</td>
-                        <td>{{ recipe['CHOCDF.net'] }}</td>
+                        <td>{{ recipe['CHOCDF_net'] }}</td>
                         <td>N/A</td>
                     </tr>
                     <tr>
                         <td>Sodium, Na</td>
                         <td>{{ recipe.NA }}</td>
-                        <td>{{ recipe['NA%'] }}</td>
+                        <td>{{ recipe['NA_perc'] }}</td>
                     </tr>
                     <tr>
                         <td>Calcium, Ca</td>
                         <td>{{ recipe.CA }}</td>
-                        <td>{{ recipe['CA%'] }}</td>
+                        <td>{{ recipe['CA_perc'] }}</td>
                     </tr>
                     <tr>
                         <td>Iron, Fe</td>
                         <td>{{ recipe.FE }}</td>
-                        <td>{{ recipe['FE%'] }}</td>
+                        <td>{{ recipe['FE_perc'] }}</td>
                     </tr>
                     <tr>
                         <td>Zinc, Zn</td>
                         <td>{{ recipe.ZN }}</td>
-                        <td>{{ recipe['ZN%'] }}</td>
+                        <td>{{ recipe['ZN_perc'] }}</td>
                     </tr>
                     <tr>
                         <td>Vitamin C, total ascorbic acid</td>
                         <td>{{ recipe.VITC }}</td>
-                        <td>{{ recipe['VITC%'] }}</td>
+                        <td>{{ recipe['VITC_perc'] }}</td>
                     </tr>
                     <tr>
                         <td>Thiamin</td>
                         <td>{{ recipe.THIA }}</td>
-                        <td>{{ recipe['THIA%'] }}</td>
+                        <td>{{ recipe['THIA_perc'] }}</td>
                     </tr>
                     <tr>
                         <td>Niacin</td>
                         <td>{{ recipe.NIA }}</td>
-                        <td>{{ recipe['NIA%'] }}</td>
+                        <td>{{ recipe['NIA_perc'] }}</td>
                     </tr>
                     <tr>
                         <td>Vitamin B-6</td>
                         <td>{{ recipe.VITB6A }}</td>
-                        <td>{{ recipe['VITB6A%'] }}</td>
+                        <td>{{ recipe['VITB6A_perc'] }}</td>
                     </tr>
                     <tr>
                         <td>Magnesium</td>
                         <td>{{ recipe.MG }}</td>
-                        <td>{{ recipe['MG%'] }}</td>
+                        <td>{{ recipe['MG_perc'] }}</td>
                     </tr>
                 </table>
 
@@ -353,47 +379,47 @@
                     <tr>
                         <td>Potassium, K</td>
                         <td>{{ recipe.K }}</td>
-                        <td>{{ recipe['K%'] }}</td>
+                        <td>{{ recipe['K_perc'] }}</td>
                     </tr>
                     <tr>
                         <td>Phosphorus, P</td>
                         <td>{{ recipe.P }}</td>
-                        <td>{{ recipe['P%'] }}</td>
+                        <td>{{ recipe['P_perc'] }}</td>
                     </tr>
                     <tr>
                         <td>Vitamin A, RAE</td>
                         <td>{{ recipe.VITA_RAE }}</td>
-                        <td>{{ recipe['VITA_RAE%'] }}</td>
+                        <td>{{ recipe['VITA_RAE_perc'] }}</td>
                     </tr>
                     <tr>
                         <td>Riboflavin</td>
                         <td>{{ recipe.RIBF }}</td>
-                        <td>{{ recipe['RIBF%'] }}</td>
+                        <td>{{ recipe['RIBF_perc'] }}</td>
                     </tr>
                     <tr>
                         <td>Folate, DFE</td>
                         <td>{{ recipe.FOLDFE }}</td>
-                        <td>{{ recipe['FOLDFE%'] }}</td>
+                        <td>{{ recipe['FOLDFE_perc'] }}</td>
                     </tr>
                     <tr>
                         <td>Vitamin B-12</td>
                         <td>{{ recipe.VITB12 }}</td>
-                        <td>{{ recipe['VITB12%'] }}</td>
+                        <td>{{ recipe['VITB12_perc'] }}</td>
                     </tr>
                     <tr>
                         <td>Vitamin D (D2 + D3)</td>
                         <td>{{ recipe.VITD }}</td>
-                        <td>{{ recipe['VITD%'] }}</td>
+                        <td>{{ recipe['VITD_perc'] }}</td>
                     </tr>
                     <tr>
                         <td>Vitamin E (alpha-tocopherol)</td>
                         <td>{{ recipe.TOCPHA }}</td>
-                        <td>{{ recipe['TOCPHA%'] }}</td>
+                        <td>{{ recipe['TOCPHA_perc'] }}</td>
                     </tr>
                     <tr>
                         <td>Vitamin K (phylloquinone)</td>
                         <td>{{ recipe.VITK1 }}</td>
-                        <td>{{ recipe['VITK1%'] }}</td>
+                        <td>{{ recipe['VITK1_perc'] }}</td>
                     </tr>
                     <tr>
                         <td>Water</td>
