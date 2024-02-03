@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Celiac Disease Meal Planner</title>
-    <link rel="stylesheet" href="style.css">
+    <title>About - Celiac Disease Meal Planner</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -105,23 +104,33 @@
             color: white;
         }
 
-        .get-started-button {
-            background-color: #376a45;
-            text-decoration: none;
-            color: #fff;
-            border: none;
+        team-members {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .team-member {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #376a45;
             border-radius: 5px;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            width: 30vw;
-            margin: auto;
+            max-width: 80vw;
             text-align: center;
         }
-
-        .get-started-button:hover {
-            background-color: #142B13;
+        .team-member > h3, .team-member > a {
+            padding: 10%;
         }
+        @media screen and (max-width: 600px){
+            .team-member {
+                grid-template-columns: 1fr;
+            }
+            .team-member > h3, .team-member > a {
+                padding: 5%;
+            }
+        }
+        
     </style>
 </head>
 <body>
@@ -129,20 +138,49 @@
         <h1>Celiac Disease Meal Planner</h1>
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li><a href="/browse">Recipes</a></li>
                 <li><a href="/search">Search</a></li>
                 <li><a href="#">Your Meal Plans</a></li>
-                <li><a href="/about">About</a></li>
+                <li><a href="#">About</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <section>
-            <h2>Welcome to the Celiac Disease Meal Planner</h2>
-            <p>Our mission is to help celiac disease patients plan their meals with ease. We provide a variety of recipes, meal plans, and a shopping list feature to make meal planning a breeze.</p>
-            <a href="/browse" class="get-started-button">Get Started</a>
-        </section>
+        <h2>About Celiac Disease Meal Planner</h2>
+            <p>
+                Celiac Disease Meal Planner is a web application that helps people with celiac disease to plan their meals. 
+                The application provides a list of recipes that are safe for people with celiac disease to eat. 
+                The application also allows users to search for recipes based on their dietary restrictions and preferences. 
+                Users can also create meal plans and save their favorite recipes.
+            </p>
+            <h2>Our Team</h2>
+            <div class="team-members">
+                <div class="team-member">
+                    <!-- <img src="/static/images/team-member-1.jpg" alt="Team Member 1"> -->
+                    <h3>Sayed Afnan Khazi</h3>
+                    <p>Afnan is a full-stack web developer with experience in building web applications using Python, Flask, and JavaScript. He is passionate about building applications that help people.</p>
+                    <a href="https://safnank.netlify.app">Contact</a>
+                </div>
+                <div class="team-member">
+                    <!-- <img src="/static/images/team-member-2.jpg" alt="Team Member 2"> -->
+                    <h3>Ayush N Patel</h3>
+                    <p>Ayush is a data scientist and pythonista passionate about helping others</p>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="team-member">
+                    <!-- <img src="/static/images/team-member-3.jpg" alt="Team Member 3"> -->
+                    <h3>Professor Mayura T</h3>
+                    <p>Professor, NIE, Mysore.</p>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="team-member">
+                    <!-- <img src="/static/images/team-member-4.jpg" alt="Team Member 4"> -->
+                    <h3>Dr. Vanishri Arun</h3>
+                    <p>Professor, JSS STU, Mysore.</p>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
     </main>
     <footer>
         <p>&copy; 2023 Celiac Disease Meal Planner</p>

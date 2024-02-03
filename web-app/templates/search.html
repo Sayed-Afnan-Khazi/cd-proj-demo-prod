@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Celiac Disease Meal Planner</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Search - Celiac Disease Meal Planner</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -105,23 +104,60 @@
             color: white;
         }
 
-        .get-started-button {
-            background-color: #376a45;
-            text-decoration: none;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            width: 30vw;
-            margin: auto;
-            text-align: center;
+        .search-title {
+            margin-bottom: 20px;
+            margin-top: 20px;
+            color: #000;
+        }
+        .search {
+            display: flex;
+            align-items: center;
+            width: 70vw;
+            height: 20vh;
         }
 
-        .get-started-button:hover {
+        .search-bar {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-field {
+            width: 70%;
+            padding: 15px;
+            border: 1px solid #376a45;
+            font-size: 1.2em;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        @media screen and (max-width: 600px){
+            .search-field {
+                font-size: 0.7em;
+            }
+        }
+
+        .search-submit {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #376a45;
+            color: white;
+            cursor: pointer;
+        }
+
+        .search-submit:hover {
             background-color: #142B13;
         }
+
+        .search-details {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-bottom: #142B13 2px solid;
+        }
+        
     </style>
 </head>
 <body>
@@ -129,20 +165,44 @@
         <h1>Celiac Disease Meal Planner</h1>
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li><a href="/browse">Recipes</a></li>
-                <li><a href="/search">Search</a></li>
+                <li><a href="#">Search</a></li>
                 <li><a href="#">Your Meal Plans</a></li>
                 <li><a href="/about">About</a></li>
             </ul>
         </nav>
     </header>
     <main>
+        <h1 class="search-title">Search for Recipes</h1>
+        <form class="search" action="/search" method="post">
+            <div class="search-bar">
+                <input class="search-field" type="text" id="search" placeholder="Search for recipes, ingredients, locations..." name="search" required>
+                <input class="search-submit" type="submit" value="Search">
+            </div>
+        </form>
+        {% if recipes %}
         <section>
-            <h2>Welcome to the Celiac Disease Meal Planner</h2>
-            <p>Our mission is to help celiac disease patients plan their meals with ease. We provide a variety of recipes, meal plans, and a shopping list feature to make meal planning a breeze.</p>
-            <a href="/browse" class="get-started-button">Get Started</a>
+            <div class="search-details">
+                <h2>Search Results</h2>
+                <p>Here are the recipes that match your search criteria. Click on the recipe name to view it's details.</p>
+            </div>
+            <br>
+            <table>
+                <tr>
+                    <td><h2>Srno</h2></td>
+                    <td><h2>Recipe Name</h2></td>
+                </tr>
+                {% for record in recipes %}
+                <tr>
+                    <td><p>{{ record[0] }}</p></td>
+                    <td><h3><a 
+                        href="/recipe-details/{{ record[0] }}">{{ record[1] }}</a></h3></td>
+                </tr>
+                {% endfor %}
+            </table>
         </section>
+        {% endif %}
     </main>
     <footer>
         <p>&copy; 2023 Celiac Disease Meal Planner</p>
