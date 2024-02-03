@@ -12,7 +12,7 @@ import pandas as pd
 
 
 load_dotenv()
-app = Flask(__name__, template_folder='templates')
+app = Flask(__name__, template_folder='templates',static_folder='static')
 
 # Get the current directory
 basedir = os.path.abspath(os.path.dirname(__file__))
