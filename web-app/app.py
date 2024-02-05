@@ -133,6 +133,10 @@ def validate_password(password):
         return False  
     return True  
 
+def split_list(input_list, n):
+    length = len(input_list)
+    return [input_list[i*length // n: (i+1)*length // n] for i in range(n)]
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -165,6 +169,17 @@ def search():
                                             )).with_entities(Recipes.Srno, Recipes.RecipeName).all()
         return render_template('search.html', recipes=recipes)
     return render_template('search.html',recipes=None)
+
+@app.route('/meal_planner', methods=['GET', 'POST'])
+def meal_planner():
+    if request.method == 'POST':
+        duration = int(request.form['duration'])
+        kcal_goal = float(request.form['kcal_goal'])
+        meals_per_day = int(request.form['meals_per_day'])
+        recipes = Recipes.query.filter(Recipes.ENERC_KCAL <= kcal_goal/meals_per_day).with_entities(Recipes.Srno, Recipes.RecipeName, Recipes.ENERC_KCAL).order_by(Recipes.ENERC_KCAL.desc()).limit(meals_per_day*duration).all()
+        recipe_list = split_list(recipes, duration)
+        return render_template('meal_planner.html', recipe_list=recipe_list,meals_per_day=meals_per_day)
+    return render_template('meal_planner.html',recipe_list=None)
 
 if __name__=='__main__':
     app.run(debug=True)
