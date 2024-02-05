@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - Celiac Disease Meal Planner</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.png') }}">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -141,7 +142,7 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/browse">Recipes</a></li>
                 <li><a href="/search">Search</a></li>
-                <li><a href="#">Your Meal Plans</a></li>
+                <li><a href="/meal_planner">Your Meal Plans</a></li>
                 <li><a href="#">About</a></li>
             </ul>
         </nav>
@@ -157,18 +158,6 @@
             <h2>Our Team</h2>
             <div class="team-members">
                 <div class="team-member">
-                    <!-- <img src="/static/images/team-member-1.jpg" alt="Team Member 1"> -->
-                    <h3>Sayed Afnan Khazi</h3>
-                    <p>Afnan is a full-stack web developer with experience in building web applications using Python, Flask, and JavaScript. He is passionate about building applications that help people.</p>
-                    <a href="https://safnank.netlify.app">Contact</a>
-                </div>
-                <div class="team-member">
-                    <!-- <img src="/static/images/team-member-2.jpg" alt="Team Member 2"> -->
-                    <h3>Ayush N Patel</h3>
-                    <p>Ayush is a data scientist and pythonista passionate about helping others</p>
-                    <a href="#">Contact</a>
-                </div>
-                <div class="team-member">
                     <!-- <img src="/static/images/team-member-3.jpg" alt="Team Member 3"> -->
                     <h3>Professor Mayura T</h3>
                     <p>Professor, NIE, Mysore.</p>
@@ -178,6 +167,18 @@
                     <!-- <img src="/static/images/team-member-4.jpg" alt="Team Member 4"> -->
                     <h3>Dr. Vanishri Arun</h3>
                     <p>Professor, JSS STU, Mysore.</p>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="team-member">
+                    <!-- <img src="/static/images/team-member-1.jpg" alt="Team Member 1"> -->
+                    <h3>Sayed Afnan Khazi</h3>
+                    <p>Afnan is a full-stack web developer with experience in building web applications using Python, Flask, and JavaScript. He is passionate about building applications that help people.</p>
+                    <a href="https://safnank.netlify.app">Contact</a>
+                </div>
+                <div class="team-member">
+                    <!-- <img src="/static/images/team-member-2.jpg" alt="Team Member 2"> -->
+                    <h3>Ayush N Patel</h3>
+                    <p>Ayush is a data scientist and pythonista passionate about helping others</p>
                     <a href="#">Contact</a>
                 </div>
             </div>
