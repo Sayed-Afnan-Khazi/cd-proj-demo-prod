@@ -35,14 +35,13 @@
             color: white;
         }
         main {
-            padding: 20px;
-            margin-bottom: 30vh;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
         section {
-            margin-bottom: 40px;
+            /* margin-bottom: 40px; */
+            height: 65vh;
             display: flex;
             flex-direction: column;
         }
@@ -110,17 +109,77 @@
             text-decoration: none;
             color: #fff;
             border: none;
-            border-radius: 5px;
+            border-radius: 20px;
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
             width: 30vw;
             margin: auto;
+            margin-bottom: 8px;
             text-align: center;
         }
 
         .get-started-button:hover {
             background-color: #142B13;
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+        }
+        .hero > h2 {
+            margin: 0;
+            font-size: 4em;
+        }
+        .hero-sub {
+            display: flex;
+            max-width: 48vw;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .hero-sub > p {
+            font-size: 1.5em;
+        }
+        @media screen and (max-width: 800px){
+            .hero > h2 {
+                font-size: 3.5em;
+            }
+            
+        }
+        @media screen and (max-width: 600px){
+            .hero {
+                flex-direction: column;
+
+            }
+            .hero > h2 {
+                font-size: 3em;
+            }
+            .hero-sub {
+                max-width: 80vw;
+            }
+            .get-started-button {
+                width: 80%;
+            }
+            section {
+                height: 80vh;
+            }  
+        }
+        @media screen and (max-width: 400px) {
+            section {
+                height: 90vh;
+            }
+        }
+        @media screen and (max-width: 300px){
+            .hero > h2 {
+                font-size: 2.5em;
+            }
+            .hero-sub > p {
+                font-size: 1.2em;
+            }
         }
     </style>
 </head>
@@ -132,16 +191,20 @@
                 <li><a href="#">Home</a></li>
                 <li><a href="/browse">Recipes</a></li>
                 <li><a href="/search">Search</a></li>
-                <li><a href="/meal_planner">Your Meal Plans</a></li>
+                <li><a href="/meal_planner">Meal Planner</a></li>
                 <li><a href="/about">About</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <section>
+        <section class="hero">
             <h2>Welcome to the Celiac Disease Meal Planner</h2>
-            <p>Our mission is to help celiac disease patients plan their meals with ease. We provide a variety of recipes, meal plans, and a shopping list feature to make meal planning a breeze.</p>
-            <a href="/browse" class="get-started-button">Get Started</a>
+            <div class="hero-sub">
+                <p>Our mission is to help celiac disease patients plan their meals with ease. We provide a variety of recipes, and a meal planner.</p>
+                <a href="/browse" class="get-started-button">Browse Our Gluten-Free Recipes</a>
+                <a href="/meal_planner" class="get-started-button">Build Your Meal Plan</a>
+                <a href="/search" class="get-started-button">Search For a Recipe</a>
+            </div>
         </section>
     </main>
     <footer>
