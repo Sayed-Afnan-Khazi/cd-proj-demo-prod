@@ -104,6 +104,23 @@
         footer > p {
             color: white;
         }
+        @media screen and (max-width: 600px){
+            td > p {
+                font-size: 0.5em;
+            }
+            td > h3, td > h2 {
+                font-size: 1em;
+            }
+        }
+        @media screen and (max-width: 400px){
+            td > p {
+                font-size: 0.4em;
+            }
+            td > h3, td > h2 {
+                font-size: 0.7em;
+            }
+        }
+        
     </style>
 </head>
 <body>
@@ -114,7 +131,7 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="#">Recipes</a></li>
                 <li><a href="/search">Search</a></li>
-                <li><a href="/meal_planner">Your Meal Plans</a></li>
+                <li><a href="/meal_planner">Meal Planner</a></li>
                 <li><a href="/about">About</a></li>
             </ul>
         </nav>
