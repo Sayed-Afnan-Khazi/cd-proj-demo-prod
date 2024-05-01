@@ -104,6 +104,14 @@
         footer > p {
             color: white;
         }
+        #translator-dropdown {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .VIpgJd-ZVi9od-l4eHX-hSRGPd > img {
+            width: auto;
+        }
         .back-button {
             background-color: #376a45; 
             border: 1px solid #376a45;
@@ -454,7 +462,14 @@
     </main>
     <footer>
         <p>&copy; 2023 Celiac Disease Meal Planner</p>
+        <div id="translator-dropdown"><div id="google_translate_element"></div></div>
     </footer>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+          new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
 </body>
 <script>
     function goBack() {
